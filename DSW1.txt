@@ -1,0 +1,119 @@
+=========================== DSW1 ==============================
+
+hostname DSW1
+
+enable secret ccna
+
+# enable ipv4 routing on L3 switch
+ip routing
+
+# configure loopback interface 
+interface Loopback1
+ip address 2.2.2.5 255.255.255.255
+
+# configure ip addresses connecting to Routers
+interface GigabitEthernet1/9
+no switchport
+no shutdown
+ip address 172.16.1.2 255.255.255.252
+
+interface GigabitEthernet1/10
+no switchport
+no shutdown
+ip address 172.16.1.5 255.255.255.252
+
+#configure L3 EtherChannel 
+interface range GigabitEthernet1/7-8
+no switchport
+channel-group 1 mode active
+no shutdown
+
+# configure ip address on the Port-Channel
+interface Port-channel1
+no shutdown
+ip address 172.16.1.17 255.255.255.252
+
+# configure the VLANs and name them
+vlan 10
+name IT
+vlan 20
+name FINANCE
+vlan 30 
+name LEGAL
+vlan 40
+name CUSTOMER-CARE
+
+# enable load balancing in spanning tree
+spanning-tree vlan 10,20 root primary
+spanning-tree vlan 30,40 root secondary
+
+# configure trunk ports on interfaces going to Access switch
+interface range GigabitEthernet1/3-6
+switchport trunk allowed vlan 10,20,30,40
+switchport mode dynamic desirable
+
+configure ip address on SVI for all VLANs and also HSRP
+interface Vlan10
+description ##GATEWAY FOR VLAN:10 is 172.16.2.20##
+no shutdown
+ip address 172.16.2.10 255.255.255.0
+ip helper-address 172.16.2.15
+standby version 2
+standby 10 ip 172.16.2.20
+standby 10 priority 110
+standby 10 preempt
+
+interface Vlan20
+description ##GATEWAY FOR VLAN:20 is 172.16.3.20##
+no shutdown
+ip address 172.16.3.10 255.255.255.0
+ip helper-address 172.16.2.15
+standby version 2
+standby 20 ip 172.16.3.20
+standby 20 priority 110
+standby 20 preempt
+
+interface Vlan30
+description ##GATEWAY FOR VLAN:30 is 172.16.4.20##
+no shutdown
+ip address 172.16.4.10 255.255.255.0
+ip helper-address 172.16.2.15
+standby version 2
+standby 30 ip 172.16.4.20
+standby 30 priority 90
+standby 30 preempt
+
+interface Vlan40
+description ##GATEWAY FOR VLAN:40 is 172.16.5.20##
+no shutdown
+ip address 172.16.5.10 255.255.255.0
+ip helper-address 172.16.2.15
+standby version 2
+standby 40 ip 172.16.5.20
+standby 40 priority 90
+standby 40 preempt
+
+# configure OSPF 
+router ospf 1
+router-id 2.2.2.5
+network 172.16.0.0 0.0.255.255 area 0
+network 2.2.2.5 0.0.0.0 area 0
+
+# configure ssh 
+ip domain-name production.com
+crypto key generate rsa general-keys modulus 2048
+username fact secret ccnp
+username martin secret ccna
+ip access-list standard SSH-MGMT
+permit 172.16.2.0 0.0.0.255
+deny any
+exit
+line vty 0 15
+login local
+transport input ssh
+transport output none
+access-class SSH-MGMT in
+exit
+ip ssh version 2
+ip ssh time-out 60
+ip ssh authentication-retries 2
