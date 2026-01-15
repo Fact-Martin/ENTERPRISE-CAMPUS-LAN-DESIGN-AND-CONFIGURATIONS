@@ -4,54 +4,47 @@ Secure and redundant enterprise network design using Packet Tracer with high ava
 ## PROJECT DESCRIPTION 
 Enterprise Campus LAN Design and Configurations. A secure, highly available campus network implemented in Cisco Packet Tracer with VLANs, HSRP, OSPF, DHCP Snooping, Dynamic ARP Inspection, SSH management and Port Security.
 
-## TABLE OF CONTENTS
--> Overview
--> Topology Diagram
--> Features & Technologies
--> VLAN/IP Plan
--> Configuration Files
--> Testing & Validation
--> How to Use
+## **Lab Overview**
 
-## TECHNOLOGIES USED
--> VLANs (10,20,30,40)(IT, FINANCE,LEGAL, CUSTOMER-CARE)
--> Inter-VLAN Routing using SVIs
--> HSRP (Standby Version 2)
--> OSPF (Single-area)
--> DHCP Snooping
--> Dynamic ARP Inspection (DAI)
--> PortFast & BPDU Guard
--> SSH (VLAN-restricted management)
--> Port Security.
+The lab demonstrates:
 
-## NETWORK ARCHITECTURE
--> Core Layer: Dual Routers
--> Distribution Layer: 2 Multilayer Switches
--> Access Layer: 4 Access Switches
--> Dedicated Management VLAN (VLAN 10 for IT).
+- **Redundant network design** using OSPF, HSRP, and VLANs.
+- **High availability** with Layer 3 EtherChannel and gateway redundancy.
+- **Network segmentation** for multiple departments (IT, Finance, Legal, Customer Care).
+- **Secure access layer** with port security, DHCP snooping, and Dynamic ARP Inspection (DAI).
+- **On-site server integration** and support for Windows and Linux servers.
 
-## HIGH AVAILABILITY
--> HSRP configured on Distribution Switch SVIs
--> Redundant trunk links
--> OSPF routing between Core and Distribution 
--> L3 Etherchannell between Distribution switches.
 
-## SECURITY FEATURES
--> DHCP Snooping enabled on Access switches
--> Trusted ports configured towards Distribution switches
--> Dynamic ARP Inspection using DHCP Snooping bindings
--> PortFast and BPDU Guard on end-user access ports
--> SSH access restricted to VLAN 10 using ACLs
--> Port security on access switches.
+## **Repository Structure / Configuration Files**
 
-## VALIDATION & TESTING
--> Verified HSRP failover
--> Verified DHCP lease assignment across VLANs
--> Verified SSH access from management VLAN only
+| File Name | Device | Description |
+|-----------|--------|-------------|
+| R1.txt    | Router 1 | OSPF, loopback, Gigabit interfaces, SSH config |
+| R2.txt    | Router 2 | OSPF, loopback, Gigabit interfaces, SSH config |
+| DSW1.txt  | Distribution Switch 1 | VLANs, HSRP, L3 EtherChannel, trunk ports |
+| DSW2.txt  | Distribution Switch 2 | VLANs, HSRP, L3 EtherChannel, trunk ports |
+| ASW1.txt  | Access Switch 1 | VLAN assignment, trunk, access ports, port security |
+| ASW2.txt  | Access Switch 2 | VLAN assignment, trunk, access ports, port security |
+| ASW3.txt  | Access Switch 3 | VLAN assignment, trunk, access ports, port security |
+| ASW4.txt  | Access Switch 4 | VLAN assignment, trunk, access ports, DHCP server connection |
 
-## AUTHOR
-**MARTIN FACT CHUNGA**  
-CCNA | Network Engineer
+## **How to Use**
+
+1. Open the configuration file in a Cisco simulator (Packet Tracer, GNS3,physical devices).  
+2. Copy the commands to the respective device.  
+3. Verify connectivity, HSRP redundancy, and OSPF routing.  
+4. Observe VLAN segmentation, port security, and DHCP/DAI functionality.
+
+## **Links**
+
+- [GitHub Repository](https://github.com/Fact-Martin/ENTERPRISE-CAMPUS-LAN-DESIGN-AND-CONFIGURATIONS)  
+- Video Walkthrough: *(link your YouTube/Rumble video here)*  
+
+
+## **Author**
+
+**Martin Fact Chunga**  
+  CCNA | Network Engineer
 
 
 
