@@ -51,7 +51,7 @@ Enterprise Campus LAN Design and Configurations. A secure, highly available camp
 
 ## AUTHOR
 **MARTIN FACT CHUNGA**  
-CCNA | Network Engineering 
+CCNA | Network Engineer
 
 
 
