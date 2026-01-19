@@ -38,7 +38,7 @@ The lab demonstrates:
 ## **Links**
 
 - [GitHub Repository](https://github.com/Fact-Martin/ENTERPRISE-CAMPUS-LAN-DESIGN-AND-CONFIGURATIONS)  
-- Video Walkthrough: *(link your YouTube/Rumble video here)*  
+- [Video Walkthrough](https://rumble.com/v74fh3g) 
 
 
 ## **Author**
